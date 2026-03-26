@@ -1,0 +1,12 @@
+# Sensitive files
+shared/config.lua.secret
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code / IDE
+.vscode/
+.idea/
+*.log
