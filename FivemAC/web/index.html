@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thinking AC | Control Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-shield-halved"></i>
+                <span>THINKING AC</span>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-tab="overview">
+                    <i class="fas fa-chart-line"></i> Overview
+                </button>
+                <button class="nav-btn" data-tab="players">
+                    <i class="fas fa-users"></i> Players
+                </button>
+                <button class="nav-btn" data-tab="bans">
+                    <i class="fas fa-gavel"></i> Ban List
+                </button>
+                <button class="nav-btn" data-tab="config">
+                    <i class="fas fa-cog"></i> Configuration
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="dot online"></span> Server Online
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header>
+                <h1 id="tab-title">Overview</h1>
+                <div class="header-actions">
+                    <button id="refresh-btn" class="icon-btn"><i class="fas fa-sync-alt"></i></button>
+                    <div class="auth-status">
+                        <i class="fas fa-key"></i> <span id="token-status">Authenticated</span>
+                    </div>
+                </div>
+            </header>
+
+            <div id="tab-content">
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-pane active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon alert"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="stat-info">
+                                <h3 id="stat-alerts">0</h3>
+                                <p>Recent Alerts</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon players"><i class="fas fa-user-friends"></i></div>
+                            <div class="stat-info">
+                                <h3 id="stat-players">0</h3>
+                                <p>Active Players</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bans"><i class="fas fa-user-slash"></i></div>
+                            <div class="stat-info">
+                                <h3 id="stat-bans">0</h3>
+                                <p>Total Bans</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h2>Recent Activity</h2>
+                        <div class="table-wrapper">
+                            <table id="alerts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Player</th>
+                                        <th>Type</th>
+                                        <th>Reason</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Alerts populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Players Tab -->
+                <div id="players" class="tab-pane">
+                    <div class="section-container">
+                        <div class="section-header">
+                            <h2>Online Players</h2>
+                            <div class="search-bar">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="player-search" placeholder="Search by name or ID...">
+                            </div>
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="players-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Ping</th>
+                                        <th>License</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Players populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bans Tab -->
+                <div id="bans" class="tab-pane">
+                    <div class="section-container">
+                        <h2>Banned Players</h2>
+                        <div class="table-wrapper">
+                            <table id="bans-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Name</th>
+                                        <th>License</th>
+                                        <th>Reason</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Bans populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Config Tab -->
+                <div id="config" class="tab-pane">
+                    <div class="section-container">
+                        <h2>Runtime Configuration</h2>
+                        <p class="warning-text"><i class="fas fa-info-circle"></i> These changes are temporary. Edit config.lua for permanent changes.</p>
+                        <form id="config-form">
+                            <div class="config-grid" id="config-fields">
+                                <!-- Config fields generated by JS -->
+                            </div>
+                            <button type="submit" class="save-btn">Apply Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-backdrop" class="hidden">
+        <div class="modal">
+            <h3 id="modal-title">Action</h3>
+            <div id="modal-body"></div>
+            <div class="modal-footer">
+                <button id="modal-cancel">Cancel</button>
+                <button id="modal-confirm" class="danger">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
